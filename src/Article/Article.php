@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace LaravelDay\Article;
 
+use LaravelDay\Article\ValueObject\Body;
+use LaravelDay\Article\ValueObject\Title;
+
 final class Article
 {
-    /* @var string*/
+    /** @var string */
     private $title;
     /**
      * @var string
@@ -21,7 +24,7 @@ final class Article
      */
     private $id;
 
-    public function __construct(int $id, string $title, string $body, \DateTimeImmutable $creationDate)
+    public function __construct(int $id, Title $title, Body $body, \DateTimeImmutable $creationDate)
     {
         $this->title = $title;
         $this->body = $body;
@@ -30,17 +33,17 @@ final class Article
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getId(): int
+    public function getTitle(): Title
     {
-        return $this->id;
+        return $this->title;
     }
 
     /**
      * @return string
      */
-    public function getBody(): string
+    public function getBody(): Body
     {
         return $this->body;
     }
@@ -53,8 +56,11 @@ final class Article
         return $this->creationDate;
     }
 
-    public function getTitle(): string
+    /**
+     * @return int
+     */
+    public function getId(): int
     {
-        return $this->title;
+        return $this->id;
     }
 }
