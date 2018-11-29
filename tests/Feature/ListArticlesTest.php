@@ -1,20 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ListArticlesTest extends TestCase
 {
     /**
      * A basic test example.
      *
-     * @return void
+     * @test
      */
-    public function testExample()
+    public function shouldListArticles()
     {
-        $this->assertTrue(true);
+        $response = $this->get('api/articles');
+        $response->assertStatus(200);
+        $response->assertJson([]);
     }
 }
